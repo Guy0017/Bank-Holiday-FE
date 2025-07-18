@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [input, setInput] = useState('');
+
   const [year, setYear] = useState(0);
   const [newYearDay, setNewYearDay] = useState('');
   const [christmasDay, setChristmasDay] = useState('');
@@ -27,6 +29,14 @@ function App() {
 
     return date1 - date2;
   });
+
+  function handleInput(e) {
+    const data = Number(e.target.value);
+
+    if (typeof data === 'number' && !isNaN(data)) {
+      setInput(data);
+    }
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -224,7 +234,7 @@ function App() {
       <br />
       <h2>Enter Year: </h2>
       <form onSubmit={handleSubmit}>
-        <input type="string" />
+        <input type="string" onChange={handleInput} value={input} />
         <input type="submit" value="check" />
       </form>
     </>
